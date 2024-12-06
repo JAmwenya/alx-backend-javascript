@@ -1,0 +1,1 @@
+This repository contains files on my attempt to manipulate data using javascript within ES6 guidlines.
