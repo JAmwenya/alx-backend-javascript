@@ -1,0 +1,1 @@
+This directory contains my attempt to use Node JS to manipulate files and a small servers created using NodeJS and Express JS. The Js files are formatted using ES6 linters. 
