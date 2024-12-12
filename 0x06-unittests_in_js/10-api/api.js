@@ -1,29 +1,55 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-app.use(express.json());
+const bodyParser = require('body-parser');
 
-app.get("/", (req, res) => {
-	res.send("Welcome to the payment system");
+app.use(bodyParser.json());
+
+// Route for testing if the API is working
+app.get('/', function (request, response) {
+  response.send('Welcome to the payment system');
 });
 
-app.get("/available_payments", (req, res) => {
-	res.json({ payment_methods: { credit_cards: true, paypal: false } });
-});
+// Route for cart ID, ensuring the cartId is a valid number
+app.get('/cart/:id', function (request, response) {
+  const cartId = request.params.id;
 
-app.get("/cart/:id", (req, res) => {
-  const { id } = req.params;
-  // Ensure that id is a valid number
-  if (isNaN(id)) {
-    return res.status(400).send("id must be a number");
+  // Check if id is a valid number
+  if (isNaN(cartId)) {
+    return response.status(400).send('id not a number');
   }
-  res.send(`Payment methods for cart ${id}`);
+
+  response.send(`Payment methods for cart ${cartId}`);
 });
 
-app.post("/login", (req, res) => {
-	const { userName } = req.body;
-	res.send(`Welcome ${userName}`);
+// Route for available payments
+app.get('/available_payments', function (request, response) {
+  response.json({
+    payment_methods: {
+      credit_cards: true,
+      paypal: false,
+    }
+  });
 });
 
-app.listen(7865, () => {
-	console.log("API available on localhost port 7865");
+// Route for login, expecting a userName in the request body
+app.post('/login', function (request, response) {
+  const { userName } = request.body;
+  if (!userName) {
+    return response.status(400).send('userName is required');
+  }
+  response.send(`Welcome ${userName}`);
 });
+
+// Start the server
+const server = app.listen(7865, function () {
+  console.log('API available on localhost port 7865');
+});
+
+// Shutdown server after tests
+function closeServer() {
+  server.close(() => {
+    console.log('Server closed');
+  });
+}
+
+module.exports = { closeServer };
