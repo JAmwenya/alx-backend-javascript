@@ -2,5 +2,8 @@
   "devDependencies": {
     "chai": "^5.1.2",
     "mocha": "^11.0.1"
+  },
+  "scripts": {
+    "test": "mocha 0-calcul.test.js"  // Add this line to run the test file
   }
 }
