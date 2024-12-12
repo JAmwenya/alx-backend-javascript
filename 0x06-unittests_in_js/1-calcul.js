@@ -15,7 +15,8 @@ function calculateNumber(type, a, b) {
         if (roundedB === 0) {
             return 'Error';
         } else {
-            return roundedA / roundedB;
+            // Perform division and round the result
+            return Math.round(roundedA / roundedB * 10) / 10; // Round the result to one decimal place
         }
     }
 }
