@@ -1,18 +1,26 @@
-const assert = require("assert");
-const calculateNumber = require("./0-calcul");
+const assert = require('assert');
+const calculateNumber = require('./0-calcul');
 
-describe("calculateNumber function tests", function () {
-  // Test that explicitly checks the first number rounding behavior using Math.ceil()
-  it("should round the first number using Math.ceil() and add 4.5", function () {
-    assert.strictEqual(calculateNumber(1.4, 4.5), 6);
-    assert.strictEqual(calculateNumber(1.2, 3.7), 5);
-    assert.strictEqual(calculateNumber(1.5, 3.7), 6);
+describe("Test suite for calculateNumber function", function () {
+
+  // Test for first number rounded using Math.ceil()
+  it("should round and add the first number using Math.ceil()", function () {
+    assert.strictEqual(calculateNumber(1.4, 4.5), 7);
+    assert.strictEqual(calculateNumber(2.1, 3.3), 6);
+    assert.strictEqual(calculateNumber(0.7, 2.2), 3);
   });
 
-  // Additional test cases for other number rounding checks
-  it("should round the first number using Math.ceil() and second number using Math.round()", function () {
-    assert.strictEqual(calculateNumber(2.1, 3.3), 6);
-    assert.strictEqual(calculateNumber(3.2, 4.8), 8);
-    assert.strictEqual(calculateNumber(4.5, 2.2), 7);
+  // Test for second number rounded using Math.round()
+  it("should round and add the second number using Math.round()", function () {
+    assert.strictEqual(calculateNumber(1.4, 4.5), 7);
+    assert.strictEqual(calculateNumber(2.1, 3.7), 7);
+    assert.strictEqual(calculateNumber(5.4, 2.2), 8);
+  });
+
+  // Test for both numbers rounded
+  it("should round and add both numbers", function () {
+    assert.strictEqual(calculateNumber(1.4, 4.5), 7);
+    assert.strictEqual(calculateNumber(2.1, 3.7), 7);
+    assert.strictEqual(calculateNumber(5.5, 2.2), 8);
   });
 });
