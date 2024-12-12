@@ -1,17 +1,23 @@
-function calculateNumber(type, a, b) {
-	a = Math.round(a);
-	b = Math.round(b);
+// 1-calcul.js
 
-	if (type === "SUM") {
-		return a + b;
-	} else if (type === "SUBTRACT") {
-		return a - b;
-	} else if (type === "DIVIDE") {
-		if (b === 0) {
-			return "Error";
-		}
-		return a / b;
-	}
+function calculateNumber(type, a, b) {
+    // Round both numbers
+    const roundedA = Math.round(a);
+    const roundedB = Math.round(b);
+
+    // Perform operation based on 'type'
+    if (type === 'SUM') {
+        return roundedA + roundedB;
+    } else if (type === 'SUBTRACT') {
+        return roundedA - roundedB;
+    } else if (type === 'DIVIDE') {
+        // Check for division by zero
+        if (roundedB === 0) {
+            return 'Error';
+        } else {
+            return roundedA / roundedB;
+        }
+    }
 }
 
 module.exports = calculateNumber;
