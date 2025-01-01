@@ -1,6 +1,14 @@
-const { expect } = require("chai");
+// 7-skip.test.js
 
 describe("Testing numbers", () => {
+	let expect;
+
+	// Dynamically import chai in the test setup
+	before(async () => {
+		const { expect: chaiExpect } = await import("chai");
+		expect = chaiExpect;
+	});
+
 	it("1 is equal to 1", () => {
 		expect(1 === 1).to.be.true;
 	});
@@ -9,7 +17,8 @@ describe("Testing numbers", () => {
 		expect(2 === 2).to.be.true;
 	});
 
-	it.skip("1 is equal to 3", () => {
+	it("1 is equal to 3", function () {
+		this.skip();
 		expect(1 === 3).to.be.true;
 	});
 
