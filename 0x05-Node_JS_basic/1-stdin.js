@@ -7,9 +7,15 @@ const rl = readline.createInterface({
 
 console.log('Welcome to Holberton School, what is your name?');
 
+//flag to ensure input processing doesn't end prematurely
+let hasResponded = false;
+
 rl.on('line', (input) => {
-  console.log(`Your name is: ${input}`);
-  rl.close();
+  if (!hasResponded) {
+    console.log(`Your name is: ${input}`);
+    hasResponded = true; // Ensuring only the first input is processed
+    rl.close();
+  }
 });
 
 rl.on('close', () => {
